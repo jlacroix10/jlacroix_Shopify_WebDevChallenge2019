@@ -51,14 +51,14 @@ let getHtmlFromJson = (jsonData) => {
 }
 
 let getFavourites = () => {
-    if (localStorage.favorites)
-        return localStorage.favorites.split(SEPERATOR);
+    if (localStorage.favourites)
+        return localStorage.favourites.split(SEPERATOR);
     else
         return null;
 }
 
 let isInFavourites = (title) => {
-    if (localStorage.favorites) {
+    if (localStorage.favourites) {
         return getFavourites().filter((val)=>val.indexOf(title)!=-1).length!=0;
     }
     else
@@ -104,10 +104,10 @@ let toggleFavouriteFromFavList = (ev) => {
     let index = allFavs.findIndex((val)=>val.indexOf(title)!=-1);
     if (index == 0) {
         allFavs.shift();
-        localStorage.favorites = allFavs.join(SEPERATOR);
+        localStorage.favourites = allFavs.join(SEPERATOR);
     }
     else {
-        localStorage.favorites = allFavs.splice(index,1).join(SEPERATOR);
+        localStorage.favourites = allFavs.splice(index,1).join(SEPERATOR);
     }
     $("#results > .entry > p").filter((ind,elem)=>elem.innerHTML==title).prev().removeClass("favourite").addClass("notfavourite");
     
@@ -124,18 +124,18 @@ let toggleFavourite = (ev) => {
         let index = allFavs.findIndex((val)=>val.indexOf(title)!=-1);
         if (index == 0) {
             allFavs.shift();
-            localStorage.favorites = allFavs.join(SEPERATOR);
+            localStorage.favourites = allFavs.join(SEPERATOR);
         }
         else {
-            localStorage.favorites = allFavs.splice(index,1).join(SEPERATOR);
+            localStorage.favourites = allFavs.splice(index,1).join(SEPERATOR);
         }
         $elem.removeClass("favourite").addClass("notfavourite");
     } else {
         $elem.addClass("favourite").removeClass("notfavourite");
-        if (localStorage.favorites) {
-            localStorage.favorites += SEPERATOR + title
+        if (localStorage.favourites) {
+            localStorage.favourites += SEPERATOR + title
         } else {
-            localStorage.favorites = title
+            localStorage.favourites = title
         }
     }
     loadFavourites();
