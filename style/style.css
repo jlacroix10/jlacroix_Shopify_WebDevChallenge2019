@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    color: white;
+    background: linear-gradient(to right, #1d5a93, #23975e);
+    text-align: center;
+    padding: 30px;
+}
+
+#favHeader {
+    color: #23975e;
+}
+
+#search {
+    display: grid;
+    grid-template-columns: 95% auto;
+    grid-column-gap: 10px;
+    grid-template-rows: 40px;
+}
+
+input {
+    padding: 10px;
+    border-radius: 2px;
+    border-width: 2px;
+    border-color: lightgrey;
+}
+
+.entry {
+    display: block;
+    display: grid;
+    grid-template-columns: 25px 30% 69%;
+}
+
+button {
+    text-align: center;
+    padding: 0px;
+    background-color: #23975e;
+    border: 0px;
+    border-radius: 2px;
+}
+
+.entry > i {
+    margin-top: 16px;
+    cursor: pointer;
+}
+
+.favourite {
+    color: #23975e;
+}
+
+.notfavorite {
+    color: lightgrey;
+}
+
+button > i {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font-size: 1.5em;
+    color: white;
+    transform: rotate(90deg);
+}
+
+.entry > ul {
+    padding-left: 0px; /*To match the padding of the p tag*/
+}
+
+@media all and (min-width:1400px) {
+    #search {
+        grid-template-columns: 97% auto;
+    }
+}
