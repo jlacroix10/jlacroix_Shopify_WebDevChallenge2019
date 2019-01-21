@@ -25,7 +25,7 @@ let getHtmlFromJson = (jsonData) => {
         let descHtml = htmlDecode(elem.body); 
         e.innerHTML = descHtml;
 
-        //If there is only one child, there is no problem.
+        //If there is only one child, there is no problem, just leave it be.
         if (e.childNodes.length==1) {
             html += descHtml;
         }
@@ -39,6 +39,7 @@ let getHtmlFromJson = (jsonData) => {
                 } //if
             }//for
 
+            //when there are no ul tag, replace the p tag with an ul tag, and replace all the \n with a new li tag.
             if (!found) {
                 let newDescHtml = `<ul><li>${descHtml.replace("\n","</li><li>")}</li></ul>`
                 html+=newDescHtml;
