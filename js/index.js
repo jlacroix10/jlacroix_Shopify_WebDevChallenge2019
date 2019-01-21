@@ -72,7 +72,7 @@ let loadFavourites = () => {
     if (allFavs) {
                                
         
-    $.get("https://secure.toronto.ca/cc_sr_v1/data/swm_waste_wizard_APR").done((data)=>{
+    $.get("https://secure.toronto.ca/cc_sr_v1/data/swm_waste_wizard_APR?limit=1000").done((data)=>{
         let results = [];
         for (let fav of allFavs) {
             for (let elem of data) {
@@ -108,9 +108,10 @@ let toggleFavouriteFromFavList = (ev) => {
         localStorage.favourites = allFavs.join(SEPERATOR);
     }
     else {
-        localStorage.favourites = allFavs.splice(index,1).join(SEPERATOR);
+        allFavs.splice(index,1);
+        localStorage.favourites = allFavs.join(SEPERATOR);
     }
-    $("#results > .entry > p").filter((ind,elem)=>elem.innerHTML==title).prev().removeClass("favourite").addClass("notfavourite");
+    $("#results > .entry > p").filter((ind,elem)=>elem.innerText==title).prev().removeClass("favourite").addClass("notfavourite");
     
     loadFavourites();
 }
@@ -128,7 +129,9 @@ let toggleFavourite = (ev) => {
             localStorage.favourites = allFavs.join(SEPERATOR);
         }
         else {
-            localStorage.favourites = allFavs.splice(index,1).join(SEPERATOR);
+            allFavs.splice(index,1);
+
+            localStorage.favourites = allFavs.join(SEPERATOR);
         }
         $elem.removeClass("favourite").addClass("notfavourite");
     } else {
@@ -144,7 +147,7 @@ let toggleFavourite = (ev) => {
 
 let sendRequest = () => {
     let search = $('#searchBox').val();
-    $.get("https://secure.toronto.ca/cc_sr_v1/data/swm_waste_wizard_APR").done((data)=>{
+    $.get("https://secure.toronto.ca/cc_sr_v1/data/swm_waste_wizard_APR?limit=1000").done((data)=>{
         let results = [];
         for (let elem of data) {
             if ((elem.title.indexOf(search) != -1)||(elem.keywords.indexOf(search) != -1))
