@@ -130,7 +130,6 @@ let toggleFavourite = (ev) => {
         }
         else {
             allFavs.splice(index,1);
-
             localStorage.favourites = allFavs.join(SEPERATOR);
         }
         $elem.removeClass("favourite").addClass("notfavourite");
